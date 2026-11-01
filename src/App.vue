@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onUnmounted } from 'vue'
 import ClothingImage from './components/ClothingImage.vue'
+import AppIcon from './components/AppIcon.vue'
 
 const wardrobe = [
   { id: 'silk-blouse', name: 'Silk Blouse', category: 'Tops', colour: 'Green', occasion: 'Formal', weather: 'Sunny', emoji: '👚', tone: '#82956f', shape: 'blouse' },
@@ -59,6 +60,15 @@ const visible = computed(() => {
     return Object.entries(selectedTags.value).every(([kind, values]) => !values.length || values.includes(kind === 'Colours' ? item.colour : item[kind === 'Occasion' ? 'occasion' : 'weather']))
   })
 })
+const inCategory = computed(() => version.value === 'A' && category.value !== 'All Items')
+const activeFilterCount = computed(() => Object.values(selectedTags.value).flat().length)
+const foundCount = computed(() => targets.filter(t => collected.value.includes(t.id)).length)
+const navItems = [{ label: 'Home', icon: 'home' }, { label: 'Wardrobe', icon: 'wardrobe' }, { label: 'Fitting Room', icon: 'hanger' }, { label: 'WearTogether', icon: 'people' }]
+// Fixed placeholder details so every item page has the same layout as the app
+const itemStats = (item) => {
+  const n = wardrobe.findIndex(i => i.id === item.id)
+  return { outfits: (n * 7) % 19 + 3, lastAdded: (n * 5) % 13 + 1 }
+}
 const complete = computed(() => targets.every(t => collected.value.includes(t.id)))
 const seconds = computed(() => Math.round((finishedAt.value || elapsed.value) / 100) / 10)
 function record(type, detail = '') {
@@ -80,6 +90,9 @@ function stop() {
   finishedAt.value = performance.now() - startedAt.value
   phase.value = 'done'
 }
+function openFilters() { filtersOpen.value = true; record('toggle_filter_panel', 'open') }
+function closeFilters() { filtersOpen.value = false; record('toggle_filter_panel', 'closed') }
+function applyFilters() { filtersOpen.value = false; record('apply_filters') }
 function setCategory(next) { category.value = next; record('select_category', next) }
 function toggleTag(kind, value) {
   const arr = [...selectedTags.value[kind]]
@@ -141,20 +154,78 @@ function exportCsv() {
     </section>
 
     <div v-else-if="phase === 'test'" class="phone">
-      <header class="phone-top"><span>9:41</span><span>● ▰ ▮</span></header>
-      <div class="brand-row"><div class="logo">Wearabouts<span class="logo-dot">.</span></div><span class="tiny-pill">Wardrobe</span></div>
-      <div class="task-progress"><div class="tiny-label">DINNER OUTFIT CHALLENGE</div><div class="task-line"><strong>{{ targets.filter(t => collected.includes(t.id)).length }}/3 found</strong><span>Find the pieces shown in the reference images.</span></div></div>
-      <div class="wardrobe-title"><div><h2>Wardrobe</h2><span>{{ visible.length }} items</span></div><span class="round-icon">♧</span></div>
-      <template v-if="version === 'A'">
-        <div class="tabs"><button v-for="cat in categories" :key="cat" :class="{ active: category === cat }" @click="setCategory(cat)">{{ cat }}</button></div>
-        <button class="filter-control" @click="filtersOpen = !filtersOpen; record('toggle_filter_panel', filtersOpen ? 'open' : 'closed')">☷ &nbsp; {{ filtersOpen ? 'Hide filters' : 'Filter by tags' }} <span>{{ Object.values(selectedTags).flat().length ? `(${Object.values(selectedTags).flat().length} active)` : '' }}</span></button>
-        <div v-if="filtersOpen" class="filter-panel"><div class="filter-heading"><strong>Filter</strong><button @click="clearFilters">Clear selection</button></div><div v-for="(options, kind) in tagGroups" :key="kind" class="filter-group"><label>{{ kind }}</label><div class="chip-row"><button v-for="tag in options" :key="tag" class="chip" :class="{ selected: selectedTags[kind].includes(tag) }" @click="toggleTag(kind, tag)">{{ tag }}</button></div></div><button class="primary" @click="filtersOpen = false; record('apply_filters')">Apply filters</button></div>
-      </template>
-      <template v-else><div class="search-wrap"><span aria-hidden="true">⌕</span><input v-model="query" aria-label="Search your wardrobe" type="search" placeholder="Search clothing, colour or tag..." autocomplete="off" /></div><div class="search-hint">Search by name, colour, occasion or weather</div></template>
-      <div class="item-grid"><button v-for="item in visible" :key="item.id" class="item-card" @click="openItem(item)"><ClothingImage :item="item" /><div class="item-title">{{ item.name }}</div><div class="item-meta">{{ item.category }} · {{ item.colour }}</div><span v-if="collected.includes(item.id)" class="item-added">✓ Added</span></button></div>
-      <p v-if="visible.length === 0" class="empty">No matching items. Try a different {{ version === 'A' ? 'filter' : 'search' }}.</p>
-      <div class="bottom-nav"><span>⌂<small>Home</small></span><span class="nav-current">▣<small>Wardrobe</small></span><span>♧<small>Fitting Room</small></span><span>♧<small>WearTogether</small></span></div>
-      <div v-if="selectedItem" class="modal-overlay" @click.self="selectedItem = null"><div class="item-modal"><button class="close" aria-label="Close item details" @click="selectedItem = null">×</button><div class="item-image modal-image" :style="{ '--cloth': selectedItem.tone }"><span class="big-emoji">{{ selectedItem.emoji }}</span></div><div class="eyebrow">YOUR WARDROBE</div><h2>{{ selectedItem.name }}</h2><div class="item-modal-tags">{{ selectedItem.category }} · {{ selectedItem.colour }} · {{ selectedItem.occasion }}</div><button class="primary wide" :disabled="collected.includes(selectedItem.id)" @click="addItem">{{ collected.includes(selectedItem.id) ? 'Already selected' : 'Add to my outfit' }} →</button></div></div>
+      <header class="phone-top">
+        <span>9:41</span>
+        <svg class="status-icons" viewBox="0 0 60 14" aria-hidden="true"><g fill="currentColor"><rect x="0" y="9" width="3" height="4" rx=".7" /><rect x="4.5" y="6.5" width="3" height="6.5" rx=".7" /><rect x="9" y="4" width="3" height="9" rx=".7" /><rect x="13.5" y="1.5" width="3" height="11.5" rx=".7" /><path d="M29 12.5 26.6 10a3.4 3.4 0 0 1 4.8 0zM24.6 8a6.2 6.2 0 0 1 8.8 0l1.4-1.4a8.2 8.2 0 0 0-11.6 0z" /><rect x="40" y="2.5" width="16" height="9" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".5" /><rect x="41.6" y="4.1" width="12.8" height="5.8" rx="1.3" /><path d="M57.3 5.5v3a1.6 1.6 0 0 0 0-3z" opacity=".5" /></g></svg>
+      </header>
+
+      <div class="phone-scroll">
+        <div class="page-head">
+          <button v-if="inCategory" class="circle-btn" aria-label="Back to all items" @click="setCategory('All Items')"><AppIcon name="back" /></button>
+          <div class="page-title">
+            <h1>{{ inCategory ? category : 'Wardrobe' }}</h1>
+            <span>{{ inCategory ? `${visible.length} Items` : `Total ${visible.length} items` }}</span>
+          </div>
+          <div class="head-actions">
+            <button v-if="version === 'A'" class="circle-btn" aria-label="Filter" @click="openFilters"><AppIcon name="filter" /><span v-if="activeFilterCount" class="badge">{{ activeFilterCount }}</span></button>
+            <span class="circle-btn" aria-hidden="true"><AppIcon name="basket" /><span v-if="collected.length" class="badge">{{ collected.length }}</span></span>
+            <span class="circle-btn" aria-hidden="true"><AppIcon name="plus" /></span>
+          </div>
+        </div>
+
+        <div class="task-strip"><span>Dinner outfit · find the pieces in the reference images</span><strong>{{ foundCount }}/3</strong></div>
+
+        <div v-if="version === 'A'" class="tabs"><button v-for="cat in categories" :key="cat" :class="{ active: category === cat }" @click="setCategory(cat)">{{ cat }}</button></div>
+        <template v-else>
+          <div class="search-wrap"><AppIcon name="search" /><input v-model="query" aria-label="Search your wardrobe" type="search" placeholder="Search clothing, colour or tag..." autocomplete="off" /></div>
+          <div class="search-hint">Search by name, colour, occasion or weather</div>
+        </template>
+
+        <div class="item-grid" :class="{ 'two-col': inCategory }">
+          <button v-for="item in visible" :key="item.id" class="item-card" @click="openItem(item)">
+            <ClothingImage :item="item" />
+            <div class="item-title">{{ item.name }}</div>
+            <div class="item-meta">{{ inCategory ? `${item.occasion} • ${item.colour}` : item.category }}</div>
+            <span v-if="collected.includes(item.id)" class="item-added">✓ Added</span>
+          </button>
+        </div>
+        <p v-if="visible.length === 0" class="empty">No matching items. Try a different {{ version === 'A' ? 'filter' : 'search' }}.</p>
+      </div>
+
+      <nav class="bottom-nav" aria-hidden="true">
+        <span v-for="nav in navItems" :key="nav.label" :class="{ 'nav-current': nav.label === 'Wardrobe' }"><span class="nav-icon"><AppIcon :name="nav.icon" /></span><small>{{ nav.label }}</small></span>
+      </nav>
+
+      <div v-if="filtersOpen" class="screen">
+        <div class="screen-head"><button class="circle-btn" aria-label="Back" @click="closeFilters"><AppIcon name="back" /></button><h1>Filter</h1></div>
+        <div class="screen-body">
+          <div v-for="(options, kind, index) in tagGroups" :key="kind" class="filter-group">
+            <div class="filter-group-head"><h2>{{ kind }}</h2><button v-if="index === 0" class="text-btn" @click="clearFilters">Clear Selection</button></div>
+            <div class="chip-row"><button v-for="tag in options" :key="tag" class="chip" :class="{ selected: selectedTags[kind].includes(tag) }" @click="toggleTag(kind, tag)">{{ tag }}</button></div>
+          </div>
+          <div class="filter-actions">
+            <button class="pill-primary" @click="applyFilters">Apply</button>
+            <button class="pill-outline" @click="closeFilters">Back To Wardrobe</button>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="selectedItem" class="screen">
+        <div class="screen-head"><button class="circle-btn" aria-label="Close item details" @click="selectedItem = null"><AppIcon name="back" /></button><h1>Item details</h1></div>
+        <div class="screen-body">
+          <div class="detail-image"><ClothingImage :item="selectedItem" /></div>
+          <div class="detail-name"><h2>{{ selectedItem.name }}</h2><span>{{ selectedItem.category }}</span></div>
+          <div class="chip-row detail-tags"><span class="chip">{{ selectedItem.occasion }}</span><span class="chip">{{ selectedItem.colour }}</span><span class="chip">{{ selectedItem.weather }}</span></div>
+          <div class="detail-row"><AppIcon name="layers" /><span>Saved outfits</span><strong>{{ itemStats(selectedItem).outfits }} outfits</strong></div>
+          <div class="detail-row"><AppIcon name="basket" /><span>Last added to basket</span><strong>{{ itemStats(selectedItem).lastAdded }} days ago</strong></div>
+          <div class="detail-row"><AppIcon name="archive" /><span>Location</span><strong>Wardrobe</strong></div>
+          <div class="ai-note"><AppIcon name="sparkle" /><div><small>AI STYLING NOTE</small><p>Works well for {{ selectedItem.occasion.toLowerCase() }} looks on {{ selectedItem.weather.toLowerCase() }} days</p></div></div>
+        </div>
+        <div class="detail-actions">
+          <button class="pill-outline" @click="selectedItem = null">Back</button>
+          <button class="pill-primary" :disabled="collected.includes(selectedItem.id)" @click="addItem"><AppIcon name="basket" />{{ collected.includes(selectedItem.id) ? 'Added to Outfit' : 'Add to Outfit' }}</button>
+        </div>
+      </div>
     </div>
 
     <aside class="reference-panel" aria-labelledby="reference-heading">
