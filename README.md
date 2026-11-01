@@ -1,6 +1,6 @@
 # Wearabouts – Iter 2.5 Wardrobe Experiment
 
-A Vue 3 Composition API (`<script setup>`) prototype for a between-subjects comparison of **A: category navigation + tag filters** and **B: functional free-text search**. Both variants share the same 24 items, target clothing, layout, and selection behavior.
+A Vue 3 Composition API (`<script setup>`) prototype for a between-subjects comparison of **A: category navigation + tag filters** and **B: functional free-text search**. Both variants share the same 109 items, target clothing, layout, and selection behavior.
 
 ## Run locally
 
@@ -28,6 +28,8 @@ Randomly allocate participants yourself (e.g. 10 to each for your planned 20 par
 
 The reference images appear beside the wardrobe on larger screens and above it on mobile, without item names. Each reference is marked as found after its matching item is added.
 
+The wardrobe is large so scrolling alone is slow, and the targets sit deep in the list (positions 70, 87 and 104 of 109). Each target is the only item with its silhouette and colour (the only green top, the only brown pants, the only white shoes), so participants never have to tell apart near-identical shades.
+
 The app recognizes the *Silk Blouse* (green), *Brown Pants*, and *White Sneakers* as targets; other items can be selected but do not satisfy the task. Timer stops when all three targets are selected.
 
 ## Data collection
@@ -39,7 +41,7 @@ For perceived ease-of-use and satisfaction, use identical 1–5 post-task Maze q
 ## Important limits
 
 - This is a research prototype, not the full app. Clothing is rendered using simple SVG silhouettes, not the original Figma assets. You can replace the silhouettes with your approved project images for better fidelity.
-- With the current 24-item mock wardrobe, benchmark results describe this prototype, not the larger real wardrobe; add all actual items to `wardrobe` in `src/App.vue` if you want closer fidelity.
+- With the current 109-item mock wardrobe, benchmark results describe this prototype, not the larger real wardrobe; add all actual items to `wardrobe` in `src/App.vue` if you want closer fidelity.
 - Searching is case-insensitive AND matching across name, category, colour, occasion, weather; it is genuinely typed input, not a predetermined suggestion click.
 - Version A's filters act immediately after clicking a tag; the Apply button closes the filter panel. If your Figma design requires delayed application, change this behavior before testing.
 - Use identical devices/screen sizes where feasible; because A supports more taps while B supports keyboard input, raw click counts are **not** a completely equivalent effort measure. Prefer completion time, success, and subjective ease of use as primary outcomes.
