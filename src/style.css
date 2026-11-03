@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Great+Vibes&display=swap');
-:root{--cream:#fcf9e1;--tan:#cda376;--tan-dark:#b98c5e;--ink:#2f2a24;--muted:#9c9286;--line:#ebe5d4;--card-grey:#d4d4d4;--serif:'Playfair Display',Georgia,serif;font-family:'Inter',Arial,sans-serif;color:var(--ink);background:#eeeae3;font-synthesis:none}
+:root{--cream:#fcf9e1;--tan:#cda376;--tan-dark:#b98c5e;--ink:#2f2a24;--muted:#9c9286;--line:#ebe5d4;--card-grey:#f0f0f0;--serif:'Playfair Display',Georgia,serif;font-family:'Inter',Arial,sans-serif;color:var(--ink);background:#eeeae3;font-synthesis:none}
 *{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed}
 
 /* Study chrome */
@@ -7,7 +7,7 @@
 .study-header{max-width:800px;width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 4px 20px}
 .study-kicker{font-size:10px;letter-spacing:1.5px;font-weight:700;color:#8a7668}.study-subtitle{font-size:12px;color:#796d64}
 .study-layout{display:grid;grid-template-columns:minmax(0,390px) 180px;gap:24px;align-items:start;width:100%;max-width:594px}
-.study-layout.setup-layout{grid-template-columns:minmax(0,480px) 180px;max-width:684px}
+.study-layout.setup-layout{grid-template-columns:minmax(0,480px);max-width:480px;margin-block:auto}
 .reference-panel{position:sticky;top:22px;padding:18px;background:#fffdf1;border:1px solid #decfac;border-radius:18px}
 .reference-panel h2{font-family:var(--serif);font-size:19px;font-weight:500;margin:0}
 .reference-panel p{font-size:12px;line-height:1.5;color:#796a5f;margin:8px 0 16px}
@@ -17,24 +17,20 @@
 
 /* Setup + done panels */
 .panel{width:100%;max-width:480px;background:#fffdf1;border-radius:22px;box-shadow:0 12px 44px #453a2920;padding:36px}
+.steps{margin:16px 0 0;padding-left:20px;color:#695e53;font-size:14px;line-height:1.6}.steps li{margin-bottom:8px}
+.link-note{margin-top:18px;padding:14px 16px;border-radius:14px;background:#f5ecd9;color:#6b5847!important}
 .logo{font-family:'Great Vibes',cursive;font-size:40px;line-height:1.1}.logo-dot{display:none}
-.eyebrow{font-size:10px;letter-spacing:1.5px;color:#b18a6b;font-weight:700;margin-top:21px}
 .intro h1{font-family:var(--serif);font-size:33px;font-weight:500;line-height:1.22;margin:10px 0}
 .intro p{line-height:1.65;color:#695e53;font-size:14px}
-.field-label{display:block;font-size:12px;font-weight:700;color:#67574b;margin:20px 0 7px}
 input{width:100%;border:1px solid #ded6c7;background:#fff;border-radius:12px;padding:13px 15px;outline:none;color:#332821}
 input:focus{border-color:#ba8b6a;box-shadow:0 0 0 3px #d1aa8d33}
-.version-picker{margin-top:20px}
-.version-choice{display:block;width:100%;padding:13px;border:1px solid #ddd2c2;border-radius:11px;background:#fff;text-align:left;margin-bottom:8px;color:#655347}
-.version-choice.chosen{border-color:#b98e69;background:#f5e3d3;font-weight:700}
-.version-note{font-size:13px;margin:18px 0;color:#795c45}
 .primary{background:var(--tan);border:none;border-radius:999px;padding:12px 18px;color:#fff;font-weight:600}
 .primary:hover:not(:disabled){background:var(--tan-dark)}.primary:disabled{opacity:.5}
 .finish-btn{margin-top:16px}
 .wide{width:100%;margin-top:20px;display:flex;justify-content:center;gap:14px;align-items:center;padding:15px}
 .secondary{background:#fff;border:1px solid var(--tan);border-radius:999px;color:var(--tan-dark);padding:13px;font-weight:600}
 .fine-print{font-size:11px!important;color:#94877b!important;margin-top:20px!important}
-.done-panel{text-align:center}.done-panel .secondary{margin-top:10px}
+.done-panel{text-align:center}.done-panel h1{font-weight:700}.done-panel .secondary{margin-top:10px}
 .success-icon{width:62px;height:62px;border-radius:50%;background:#8ebc79;color:white;font-size:34px;display:grid;place-items:center;margin:0 auto 20px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}
 .stats>div{border:1px solid #eadccf;border-radius:12px;background:#fff;padding:16px 5px}
