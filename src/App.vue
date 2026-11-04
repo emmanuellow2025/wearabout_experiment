@@ -4,7 +4,7 @@ import ClothingImage from './components/ClothingImage.vue'
 import AppIcon from './components/AppIcon.vue'
 
 const wardrobe = [
-  { id: 'straight-jeans', name: 'Straight Jeans', category: 'Bottoms', colour: 'Blue', occasion: 'Casual', weather: 'Cloudy', image: '/images/straight-jeans.webp' },
+  { id: 'green-ruffled-skirt', name: 'Green Ruffled Skirt', category: 'Bottoms', colour: 'Green', occasion: 'Party', weather: 'Sunny', image: '/images/green-ruffled-skirt.webp' },
   { id: 'beige-ruffle-skirt', name: 'Beige Ruffle Skirt', category: 'Bottoms', colour: 'Beige', occasion: 'Party', weather: 'Sunny', image: '/images/beige-ruffle-skirt.webp' },
   { id: 'brown-oxford-shoes', name: 'Brown Oxford Shoes', category: 'Shoes', colour: 'Brown', occasion: 'Formal', weather: 'Cloudy', image: '/images/brown-oxford-shoes.webp' },
   { id: 'beige-collar-jacket', name: 'Beige Collar Jacket', category: 'Outerwear', colour: 'Beige', occasion: 'Casual', weather: 'Cloudy', image: '/images/beige-collar-jacket.webp' },
@@ -29,7 +29,7 @@ const wardrobe = [
   { id: 'grey-sweatpants', name: 'Grey Sweatpants', category: 'Bottoms', colour: 'Grey', occasion: 'Casual', weather: 'Cloudy', image: '/images/grey-sweatpants.webp' },
   { id: 'light-blue-ribbed-tank', name: 'Light Blue Ribbed Tank', category: 'Tops', colour: 'Blue', occasion: 'Casual', weather: 'Sunny', image: '/images/light-blue-ribbed-tank.webp' },
   { id: 'pink-blouse', name: 'Pink Blouse', category: 'Tops', colour: 'Pink', occasion: 'Formal', weather: 'Sunny', image: '/images/pink-blouse.webp' },
-  { id: 'beige-knit-sweater', name: 'Beige Knit Sweater', category: 'Tops', colour: 'Beige', occasion: 'Casual', weather: 'Cloudy', image: '/images/beige-knit-sweater.webp' },
+  { id: 'mustard-shirt', name: 'Mustard Shirt', category: 'Tops', colour: 'Yellow', occasion: 'Casual', weather: 'Sunny', image: '/images/mustard-shirt.webp' },
   { id: 'denim-jacket', name: 'Denim Jacket', category: 'Outerwear', colour: 'Blue', occasion: 'Casual', weather: 'Cloudy', image: '/images/denim-jacket.webp' },
   { id: 'khaki-skort', name: 'Khaki Skort', category: 'Bottoms', colour: 'Beige', occasion: 'Casual', weather: 'Sunny', image: '/images/khaki-skort.webp' },
   { id: 'black-chore-jacket', name: 'Black Chore Jacket', category: 'Outerwear', colour: 'Black', occasion: 'Casual', weather: 'Rainy', image: '/images/black-chore-jacket.webp' },
@@ -42,7 +42,7 @@ const wardrobe = [
   { id: 'brown-parka', name: 'Brown Parka', category: 'Outerwear', colour: 'Brown', occasion: 'Casual', weather: 'Rainy', image: '/images/brown-parka.webp' },
   { id: 'grey-ringer-tee', name: 'Grey Ringer Tee', category: 'Tops', colour: 'Grey', occasion: 'Casual', weather: 'Sunny', image: '/images/grey-ringer-tee.webp' },
   { id: 'olive-half-zip', name: 'Olive Half-Zip', category: 'Tops', colour: 'Green', occasion: 'Casual', weather: 'Cloudy', image: '/images/olive-half-zip.webp' },
-  { id: 'white-trainers', name: 'White Trainers', category: 'Shoes', colour: 'White', occasion: 'Casual', weather: 'Sunny', image: '/images/white-trainers.webp' },
+  { id: 'pink-sneakers', name: 'Pink Sneakers', category: 'Shoes', colour: 'Pink', occasion: 'Casual', weather: 'Sunny', image: '/images/pink-sneakers.webp' },
   { id: 'white-pleated-skirt', name: 'White Pleated Skirt', category: 'Bottoms', colour: 'White', occasion: 'Casual', weather: 'Sunny', image: '/images/white-pleated-skirt.webp' },
   { id: 'black-leather-jacket', name: 'Black Leather Jacket', category: 'Outerwear', colour: 'Black', occasion: 'Party', weather: 'Cloudy', image: '/images/black-leather-jacket.webp' },
   { id: 'grey-raglan-top', name: 'Grey Raglan Top', category: 'Tops', colour: 'Grey', occasion: 'Casual', weather: 'Cloudy', image: '/images/grey-raglan-top.webp' },
@@ -65,7 +65,7 @@ const wardrobe = [
   { id: 'white-running-shoes', name: 'White Running Shoes', category: 'Shoes', colour: 'White', occasion: 'Casual', weather: 'Rainy', image: '/images/white-running-shoes.webp' },
   { id: 'baby-blue-tank-top', name: 'Baby Blue Tank Top', category: 'Tops', colour: 'Blue', occasion: 'Casual', weather: 'Sunny', image: '/images/baby-blue-tank-top.webp' },
   { id: 'green-shirt', name: 'Green Shirt', category: 'Tops', colour: 'Green', occasion: 'Casual', weather: 'Sunny', image: '/images/green-shirt.webp' },
-  { id: 'mustard-shirt', name: 'Mustard Shirt', category: 'Tops', colour: 'Yellow', occasion: 'Casual', weather: 'Sunny', image: '/images/mustard-shirt.webp' },
+  { id: 'beige-knit-sweater', name: 'Beige Knit Sweater', category: 'Tops', colour: 'Beige', occasion: 'Casual', weather: 'Cloudy', image: '/images/beige-knit-sweater.webp' },
   { id: 'blue-flannel-shirt', name: 'Blue Flannel Shirt', category: 'Tops', colour: 'Blue', occasion: 'Casual', weather: 'Cloudy', image: '/images/blue-flannel-shirt.webp' },
   { id: 'olive-polo-sweater', name: 'Olive Polo Sweater', category: 'Tops', colour: 'Green', occasion: 'Formal', weather: 'Cloudy', image: '/images/olive-polo-sweater.webp' },
   { id: 'white-ruffle-dress', name: 'White Ruffle Dress', category: 'Dresses', colour: 'White', occasion: 'Party', weather: 'Sunny', image: '/images/white-ruffle-dress.webp' },
@@ -77,7 +77,7 @@ const wardrobe = [
   { id: 'polka-dot-skirt', name: 'Polka Dot Skirt', category: 'Bottoms', colour: 'Black', occasion: 'Party', weather: 'Sunny', image: '/images/polka-dot-skirt.webp' },
   { id: 'black-bermuda-shorts', name: 'Black Bermuda Shorts', category: 'Bottoms', colour: 'Black', occasion: 'Casual', weather: 'Sunny', image: '/images/black-bermuda-shorts.webp' },
   { id: 'red-long-sleeve-top', name: 'Red Long-Sleeve Top', category: 'Tops', colour: 'Red', occasion: 'Party', weather: 'Cloudy', image: '/images/red-long-sleeve-top.webp' },
-  { id: 'green-ruffled-skirt', name: 'Green Ruffled Skirt', category: 'Bottoms', colour: 'Green', occasion: 'Party', weather: 'Sunny', image: '/images/green-ruffled-skirt.webp' },
+  { id: 'straight-jeans', name: 'Straight Jeans', category: 'Bottoms', colour: 'Blue', occasion: 'Casual', weather: 'Cloudy', image: '/images/straight-jeans.webp' },
   { id: 'denim-midi-skirt', name: 'Denim Midi Skirt', category: 'Bottoms', colour: 'Blue', occasion: 'Casual', weather: 'Sunny', image: '/images/denim-midi-skirt.webp' },
   { id: 'beige-midi-skirt', name: 'Beige Midi Skirt', category: 'Bottoms', colour: 'Beige', occasion: 'Casual', weather: 'Sunny', image: '/images/beige-midi-skirt.webp' },
   { id: 'tweed-sleeveless-top', name: 'Tweed Sleeveless Top', category: 'Tops', colour: 'Black', occasion: 'Party', weather: 'Sunny', image: '/images/tweed-sleeveless-top.webp' },
@@ -87,12 +87,12 @@ const wardrobe = [
   { id: 'floral-culottes', name: 'Floral Culottes', category: 'Bottoms', colour: 'Blue', occasion: 'Casual', weather: 'Sunny', image: '/images/floral-culottes.webp' },
   { id: 'wide-leg-jeans', name: 'Wide-Leg Jeans', category: 'Bottoms', colour: 'Blue', occasion: 'Casual', weather: 'Sunny', image: '/images/wide-leg-jeans.webp' },
   { id: 'grey-denim-shorts', name: 'Grey Denim Shorts', category: 'Bottoms', colour: 'Grey', occasion: 'Casual', weather: 'Sunny', image: '/images/grey-denim-shorts.webp' },
-  { id: 'pink-sneakers', name: 'Pink Sneakers', category: 'Shoes', colour: 'Pink', occasion: 'Casual', weather: 'Sunny', image: '/images/pink-sneakers.webp' },
+  { id: 'white-trainers', name: 'White Trainers', category: 'Shoes', colour: 'White', occasion: 'Casual', weather: 'Sunny', image: '/images/white-trainers.webp' },
   { id: 'navy-fleece-hoodie', name: 'Navy Fleece Hoodie', category: 'Outerwear', colour: 'Blue', occasion: 'Casual', weather: 'Rainy', image: '/images/navy-fleece-hoodie.webp' },
   { id: 'brown-leather-skirt', name: 'Brown Leather Skirt', category: 'Bottoms', colour: 'Brown', occasion: 'Party', weather: 'Cloudy', image: '/images/brown-leather-skirt.webp' },
   { id: 'black-sailor-pants', name: 'Black Sailor Pants', category: 'Bottoms', colour: 'Black', occasion: 'Formal', weather: 'Cloudy', image: '/images/black-sailor-pants.webp' }
 ]
-const targets = ['mustard-shirt', 'green-ruffled-skirt', 'pink-sneakers'].map(id => wardrobe.find(item => item.id === id))
+const targets = ['beige-knit-sweater', 'straight-jeans', 'white-trainers'].map(id => wardrobe.find(item => item.id === id))
 const params = new URLSearchParams(window.location.search)
 const initialVersion = ['A', 'B'].includes(params.get('version')?.toUpperCase()) ? params.get('version').toUpperCase() : ''
 const version = ref(initialVersion)
