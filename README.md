@@ -17,8 +17,8 @@ For production: `npm run build` and publish the `dist/` folder to Netlify, Verce
 
 ## Share participant links
 
-- Version A: `https://YOUR-DEPLOYED-URL/?version=A`
-- Version B: `https://YOUR-DEPLOYED-URL/?version=B`
+- Version A: `https://wearabouts-experiment-testing.vercel.app/?version=A`
+- Version B: `https://wearabouts-experiment-testing.vercel.app/?version=A`
 
 The site must always be opened with one of these links. Without `?version=`, the start screen only says "Please open the study using the link provided by the researcher." and there is no way to choose a version.
 
